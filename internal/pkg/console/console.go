@@ -1,31 +1,34 @@
 package console
 
-type Worker struct {
-	amount float64
-	src    string
-	dst    string
+import (
+	"fmt"
+)
+var wrongArgsError error = fmt.Errorf("wrong args")
+
+type CmdWorker struct {
+	args []string
 }
 
-func (cw *Worker) SetAmount(a float64) {
-	cw.amount = a
+func NewCmdWorker() *CmdWorker {
+	return &CmdWorker{}
 }
 
-func (cw *Worker) GetAmount() float64 {
-	return cw.amount
+func (cw *CmdWorker) Init(args []string) error {
+	switch len(args) {
+	case 1:
+		return fmt.Errorf("wrong args")
+	case 4:
+		cw.SetArguments(args)
+	default:
+		return fmt.Errorf("wrong args")
+	}
+	return nil
 }
 
-func (cw *Worker) SetSrc(src string) {
-	cw.src = src
+func (cw *CmdWorker) SetArguments(args []string) {
+	cw.args = args[1:]
 }
 
-func (cw *Worker) GetSrc() string {
-	return cw.src
-}
-
-func (cw *Worker) SetDst(dst string) {
-	cw.dst = dst
-}
-
-func (cw *Worker) GetDst() string {
-	return cw.dst
+func (cw *CmdWorker) GetArgs() []string {
+	return cw.args
 }
