@@ -1,7 +1,7 @@
 package console_exchanger
 
 import (
-	"github.com/jda157/consoleMoneyRate/internal/pkg/console"
+	"github.com/jda157/cmd-currency-exchange/internal/pkg/console"
 )
 
 type Exchanger struct {

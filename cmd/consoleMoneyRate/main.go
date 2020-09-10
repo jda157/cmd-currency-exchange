@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/jda157/consoleMoneyRate/internal/pkg/console"
+	"github.com/jda157/cmd-currency-exchange/internal/pkg/console"
 	"os"
 )
 
