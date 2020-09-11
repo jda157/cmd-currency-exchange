@@ -6,13 +6,13 @@ import (
 	http_worker "github.com/jda157/cmd-currency-exchange/internal/pkg/http-worker"
 )
 
-type CmdSetter interface {
+type ExchangeSetter interface {
 	SetCmdWorker(cw *cmd_worker.CmdWorker)
 	SetHttpWorker(hw *http_worker.HttpWorker)
 	SetApi(api string)
 }
 
-func Exchanger(ex CmdSetter, api string, args []string) error {
+func Exchanger(ex ExchangeSetter, api string, args []string) error {
 	ex.SetApi(api)
 
 	cw := cmd_worker.NewCmdWorker()

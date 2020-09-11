@@ -19,17 +19,13 @@ func main() {
 		fmt.Printf("%v\n %s", err, ce.UsageAnswer)
 		return
 	}
-	if err := doHealthCheck(ex); err != nil {
-		fmt.Printf("%v\n %s", err, ce.UsageAnswer)
+	response, err := ex.GetResponse()
+	if err != nil {
+		fmt.Printf("%v\n%s", err, ce.WrongArgs)
 	} else {
-		response, err := ex.GetResponse()
-		if err != nil {
-			fmt.Printf("%v\n%s", err, ce.WrongArgs)
-		} else {
-			fmt.Println(response)
-		}
-
+		fmt.Println(response)
 	}
+
 }
 
 func doPreparation(ex *ce.Exchanger) error {
@@ -38,9 +34,5 @@ func doPreparation(ex *ce.Exchanger) error {
 	if err != nil {
 		return err
 	}
-	return nil
-}
-
-func doHealthCheck(ex *ce.Exchanger) error {
 	return nil
 }
