@@ -1,4 +1,4 @@
-package console
+package cmd_worker
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -33,7 +33,7 @@ func TestCmdWorker_SetArguments(t *testing.T) {
 	
 	args := []string{"./currency", "1000", "USD", "RUB"}
 	cw := NewCmdWorker()
-	cw.SetArguments(args)
+	cw.setArguments(args)
 	
 	assert.Equal(t, args[1:], cw.args)
 }

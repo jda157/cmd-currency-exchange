@@ -1,4 +1,4 @@
-package console
+package cmd_worker
 
 import (
 	"fmt"
@@ -18,17 +18,17 @@ func (cw *CmdWorker) Init(args []string) error {
 	case 1:
 		return fmt.Errorf("wrong args")
 	case 4:
-		cw.SetArguments(args)
+		cw.setArguments(args)
 	default:
 		return fmt.Errorf("wrong args")
 	}
 	return nil
 }
 
-func (cw *CmdWorker) SetArguments(args []string) {
-	cw.args = args[1:]
-}
-
 func (cw *CmdWorker) GetArgs() []string {
 	return cw.args
+}
+
+func (cw *CmdWorker) setArguments(args []string) {
+	cw.args = args[1:]
 }
