@@ -2,7 +2,7 @@
 
 With this utility you can get the current exchange rate in your console.
 
-#### Install 
+#### Install
 `git clone github.com/jda157/cmd-currency-exchange`
 
 `make build`
