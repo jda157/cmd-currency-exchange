@@ -16,8 +16,6 @@ func NewCmdWorker() *CmdWorker {
 
 func (cw *CmdWorker) Init(args []string) error {
 	switch len(args) {
-	case 1:
-		return fmt.Errorf("wrong args")
 	case 4:
 		cw.setArguments(args)
 	default:
