@@ -3,7 +3,8 @@ package cmd_worker
 import (
 	"fmt"
 )
-var wrongArgsError error = fmt.Errorf("wrong args")
+
+var wrongArgsError = fmt.Errorf("wrong args")
 
 type CmdWorker struct {
 	args []string

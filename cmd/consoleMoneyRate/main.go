@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
@@ -10,22 +9,38 @@ import (
 )
 
 var (
-	apiURL = flag.String("api <URL>", "https://exchangeratesapi.io", "Exchange service URL.")
+	apiURL = "https://api.exchangeratesapi.io/latest?base="
 )
 
 func main() {
-	flag.Parse()
-
 	ex := ce.NewConsoleExchanger()
-	doPreparation(ex)
-	fmt.Println(ex.GetCmdWorker().GetArgs())
 
+	if err := doPreparation(ex); err != nil {
+		fmt.Printf("%v\n %s", err, ce.UsageAnswer)
+		return
+	}
+	if err := doHealthCheck(ex); err != nil {
+		fmt.Printf("%v\n %s", err, ce.UsageAnswer)
+	} else {
+		response, err := ex.GetResponse()
+		if err != nil {
+			fmt.Printf("%v\n%s", err, ce.WrongArgs)
+		} else {
+			fmt.Println(response)
+		}
+
+	}
 }
 
-func doPreparation(ex *ce.Exchanger) {
+func doPreparation(ex *ce.Exchanger) error {
 	args := os.Args
-	err := prepare.Exchanger(ex, *apiURL, args)
+	err := prepare.Exchanger(ex, apiURL, args)
 	if err != nil {
-		panic(err)
+		return err
 	}
+	return nil
+}
+
+func doHealthCheck(ex *ce.Exchanger) error {
+	return nil
 }
