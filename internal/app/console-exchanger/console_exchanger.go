@@ -9,9 +9,9 @@ import (
 type emptyData struct{}
 
 type Exchanger struct {
-	api   string
-	cw    *cw.CmdWorker
-	hw    *hw.HttpWorker
+	api string
+	cw  *cw.CmdWorker
+	hw  *hw.HttpWorker
 }
 
 func (e *Exchanger) SetHttpWorker(hw *hw.HttpWorker) {
@@ -59,7 +59,7 @@ func (e *Exchanger) GetResponse() (string, error) {
 		return "", err
 	}
 
-	return fmt.Sprintf("%f", currentDst*amountFloat), nil
+	return fmt.Sprintf("%f %s", currentDst*amountFloat, dst), nil
 }
 
 // NewConsoleMoneyRate create new Exchanger
