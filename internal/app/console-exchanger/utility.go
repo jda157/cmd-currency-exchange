@@ -13,7 +13,9 @@ func toFloatAmount(amount string) (float64, error) {
 
 func getCurrentDst(bytes []byte, src string, dst string) (float64, error) {
 	var p fastjson.Parser
-
+	if src == dst {
+		return 1, nil
+	}
 	v, err := p.ParseBytes(bytes) //req := &Response{}
 	if err != nil {
 		panic(err)
@@ -23,10 +25,11 @@ func getCurrentDst(bytes []byte, src string, dst string) (float64, error) {
 		return 0, fmt.Errorf("can't found %q currency", src)
 	}
 
-	if rates.Get(src) == nil {
-		return 0, fmt.Errorf("can't found %q currency", src)
+	if src != "EUR" {
+		if rates.Get(src) == nil {
+			return 0, fmt.Errorf("can't found %q currency", src)
+		}
 	}
-
 	currentDst := rates.Get(dst)
 	if currentDst == nil {
 		return 0, fmt.Errorf("can't found %q currency", dst)
