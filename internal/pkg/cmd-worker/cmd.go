@@ -15,13 +15,12 @@ func NewCmdWorker() *CmdWorker {
 }
 
 func (cw *CmdWorker) Init(args []string) error {
-	switch len(args) {
-	case 4:
+	if len(args) == 4 {
 		cw.setArguments(args)
-	default:
+                return nil
+	} else {
 		return fmt.Errorf("wrong args")
 	}
-	return nil
 }
 
 func (cw *CmdWorker) GetArgs() []string {
